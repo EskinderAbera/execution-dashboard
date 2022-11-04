@@ -11,13 +11,12 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import haile from "../data/haile.png";
 import axios from "axios";
 import { LoadingButton } from "@mui/lab";
 import { useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
-import { Snackbar, Alert, Collapse } from "@mui/material";
+import { Alert, Collapse } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -41,11 +40,8 @@ function Copyright(props) {
   );
 }
 
-// const theme = createTheme();
-
-export default function SignInSide(props) {
-  const { changeLoginUser } = useStateContext();
-  const { setIsLoggedIn } = props;
+export default function SignInSide() {
+  const { handleLoginId, handleLoginUser } = useStateContext();
   const [isSubmit, setIsSubmit] = useState(false);
   const [state, setState] = useState({
     open: false,
@@ -58,7 +54,6 @@ export default function SignInSide(props) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get("email") < 4 && data.get("password") < 4) {
-      console.log("less than password!");
       setIsSubmit(false);
     } else {
       setIsSubmit(true);
@@ -73,9 +68,9 @@ export default function SignInSide(props) {
         .post("https://pms-apis.herokuapp.com/core/auth/new/login/", datas)
         .then((response) => {
           if (response.status === 200) {
-            changeLoginUser(response.data);
             setIsSubmit(false);
-            setIsLoggedIn(true);
+            handleLoginId(response.data["user"]);
+            handleLoginUser(true);
           }
         })
         .catch((error) => {
@@ -89,7 +84,6 @@ export default function SignInSide(props) {
   };
 
   return (
-    // <ThemeProvider theme={theme}>
     <>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
@@ -193,6 +187,5 @@ export default function SignInSide(props) {
         </Grid>
       </Grid>
     </>
-    // </ThemeProvider>
   );
 }

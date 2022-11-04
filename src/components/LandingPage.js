@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useStateContext } from "../contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { useStateContext } from "../contexts/ContextProvider";
-// import Dropdown from "react-bootstrap/Dropdown";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const LandingPage = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(false);
   const [subProcess, setSubProcess] = useState(false);
@@ -63,6 +61,7 @@ const LandingPage = () => {
         .then((response) => {
           if (response.status === 200) {
             changeKPIS(response.data);
+
             navigate("/kpi", {
               state: {
                 route: {

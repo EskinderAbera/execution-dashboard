@@ -2,31 +2,9 @@ import Button from "@mui/material/Button";
 import { useStateContext } from "../contexts/ContextProvider";
 import axios from "axios";
 import Months from "./Months";
-import { Alert } from "@mui/material";
 
 const EditForm = ({ theEmployee }) => {
   const { month, actual, updateKpi, changeActual } = useStateContext();
-
-  const handleError = (error) => {
-    <div>
-      {/* {toast.error(error)};
-      <Toaster /> */}
-      <Alert severity="success" color="error">
-        {error}
-      </Alert>
-    </div>;
-  };
-
-  const handleSuccess = () => {
-    <div>
-      {console.log("Hello")}
-      {/* {toast.success("You have edited KPI Successfully!")}; */}
-      {/* <Toaster /> */}
-      <Alert severity="success" color="info">
-        You have edit KPI Successfully!
-      </Alert>
-    </div>;
-  };
 
   const editKpi = () => {
     if (month === "January") {
@@ -80,14 +58,15 @@ const EditForm = ({ theEmployee }) => {
             ...theEmployee,
             numberOfmonthsLeft: numberOfmonthsLeft,
           };
-          handleSuccess();
+          // handleSuccess();
           updateKpi(theEmployee.kpi_id, updatedKpi);
           changeActual(0);
         }
       })
       .catch((error) => {
-        handleError(error.response.data["Error"]);
-        changeActual(0);
+        // handleError(error.response.data["Error"]);
+        // changeActual(0);
+        console.log(error);
       });
   };
   return (

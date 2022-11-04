@@ -36,7 +36,7 @@ const Navbar = () => {
     isClicked,
     setScreenSize,
     screenSize,
-    loginUser,
+    loginId,
   } = useStateContext();
 
   useEffect(() => {
@@ -99,9 +99,12 @@ const Navbar = () => {
               alt="user-profile"
             />
             <p>
-              <span className="text-gray-400 text-14">Hi,</span>{" "}
+              <span className="text-gray-400 text-14">
+                Hi,{loginId.username}
+              </span>
+
               <span className="text-gray-400 font-bold ml-1 text-14">
-                {loginUser.user.username}
+                {/* {loginId.first_name} {loginId.last_name} */}
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
@@ -110,8 +113,8 @@ const Navbar = () => {
 
         {/* {isClicked.cart && <Cart />}
         {isClicked.chat && <Chat />}
-        {isClicked.notification && <Notification />}
-        {isClicked.userProfile && <UserProfile />} */}
+        {isClicked.notification && <Notification />} */}
+        {isClicked.userProfile && <UserProfile />}
       </div>
     </div>
   );
