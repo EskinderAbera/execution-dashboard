@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import KPIList from "./pages/KPIList";
@@ -7,8 +7,7 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import SignInSide from "./pages/SignIn";
-import { useState } from "react";
-import Protected from "./components/Protected";
+import LandingPage from "./pages/Landing";
 
 const App = () => {
   const {
@@ -19,9 +18,8 @@ const App = () => {
     currentColor,
     themeSettings,
     setThemeSettings,
+    isLoggedIn,
   } = useStateContext();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
@@ -37,10 +35,11 @@ const App = () => {
       <BrowserRouter>
         {!isLoggedIn ? (
           <Routes>
-            <Route
-              path="/"
-              element={<SignInSide setIsLoggedIn={setIsLoggedIn} />}
-            />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/" element={<Navigate to="/landing" />} />
+            {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+            <Route path="/login" element={<SignInSide />} />
+            <Route path="/kpi" element={<Navigate to="/landing" />} />
           </Routes>
         ) : (
           <div className="flex relative dark:bg-main-dark-bg">
@@ -56,6 +55,7 @@ const App = () => {
                 </button>
               </TooltipComponent>
             </div>
+
             {activeMenu ? (
               <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
                 <Sidebar />
@@ -76,13 +76,18 @@ const App = () => {
               <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
                 <Navbar />
               </div>
+
               <div>
                 {themeSettings && <ThemeSettings />}
+
                 <Routes>
+                  {/* <Route path="/" element = { <Navigate replace to="/kpi" />}></Route> */}
+                  <Route path="/login" element={<Navigate to="/" />} />
+                  {/* <Route path="/login" element={<SignInSide />} /> */}
                   <Route path="/kpi" element={<KPIList />} />
+                  <Route path="/" element={<Footer />} />
                 </Routes>
               </div>
-              <Footer />
             </div>
           </div>
         )}

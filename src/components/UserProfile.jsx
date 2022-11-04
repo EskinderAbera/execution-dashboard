@@ -7,8 +7,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import avatar from "../data/avatar.jpg";
 
 const UserProfile = () => {
-  const { currentColor, loginUser, roles } = useStateContext();
-  let roleId = roles.filter((role) => role.role_id === loginUser.user.role);
+  const { currentColor, loginId, roles } = useStateContext();
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -30,17 +29,12 @@ const UserProfile = () => {
         />
         <div>
           <p className="font-semibold text-xl dark:text-gray-200">
-            {" "}
-            {loginUser.user.first_name} {loginUser.user.last_name}{" "}
+            {loginId.first_name} {loginId.last_name}
           </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">
-            {" "}
-            {roleId[0].role_name}{" "}
+            {loginId.username}
           </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400">
-            {" "}
-            {loginUser.user.username}{" "}
-          </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"></p>
         </div>
       </div>
       <div>

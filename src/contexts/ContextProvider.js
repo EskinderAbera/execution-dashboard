@@ -25,7 +25,8 @@ export const ContextProvider = ({ children }) => {
   const [kpis, setKpis] = useState([]);
   const [actual, setActual] = useState(0);
   const [month, setMonth] = useState("m");
-  const [loginUser, setLoginUser] = useState({});
+  const [loginId, setLoginId] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -62,6 +63,14 @@ export const ContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  const handleLoginUser = (isLoggedIn) => {
+    setIsLoggedIn(isLoggedIn);
+  };
+
+  const handleLoginId = (loginId) => {
+    setLoginId(loginId);
+  };
+
   const setMode = (e) => {
     setCurrentMode(e.target.value);
     localStorage.setItem("themeMode", e.target.value);
@@ -88,16 +97,15 @@ export const ContextProvider = ({ children }) => {
   const updateKpi = (kpi_id, updatedKpi) => {
     setKpis(kpis.map((kpi) => (kpi.kpi_id === kpi_id ? updatedKpi : kpi)));
   };
-  const changeLoginUser = (user) => {
-    setLoginUser(user);
-  };
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <StateContext.Provider
       value={{
-        loginUser,
-        changeLoginUser,
+        isLoggedIn,
+        handleLoginUser,
+        loginId,
+        handleLoginId,
         updateKpi,
         kpis,
         changeKPIS,
