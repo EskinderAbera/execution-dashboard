@@ -15,8 +15,10 @@ const Button = ({
 
   const handleLogout = () => {
     setIsClicked(initialState);
-    // !icon && handleLoginUser(false);
-    !icon && (handleLoginUser(false), window.location.reload(true));
+    if (!icon) {
+      window.location.reload(true);
+      handleLoginUser(false);
+    }
   };
 
   return (
