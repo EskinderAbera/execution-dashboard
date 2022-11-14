@@ -5,7 +5,6 @@ import { useStateContext } from "../contexts/ContextProvider";
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(false);
   const [subProcess, setSubProcess] = useState(false);
   const [subSubProcess, setSubSubProcess] = useState(false);
@@ -43,11 +42,13 @@ const LandingPage = () => {
     setIsSubSubIndividual(false);
     setIsEnd(false);
 
-    let roleId = roles.filter((role) => {
-      if (role.role_id === event.target.value) {
-        return role.role_id;
-      }
-    });
+    // let roleId = roles.filter((role) => {
+    //   if (role.role_id === event.target.value) {
+    //     return role.role_id;
+    //   }
+    // });
+
+    let roleId = roles.filter((role) => role.role_id === event.target.value);
     setRole(roleId[0]);
     if (roleId[0].hierarchy === 0) {
       let userId = users.filter((user) => {

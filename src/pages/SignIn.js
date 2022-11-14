@@ -41,7 +41,7 @@ function Copyright(props) {
 }
 
 export default function SignInSide() {
-  const { handleLoginId, handleLoginUser } = useStateContext();
+  const { handleLoginId, handleLoginUser, users } = useStateContext();
   const [isSubmit, setIsSubmit] = useState(false);
   const [state, setState] = useState({
     open: false,
@@ -52,6 +52,7 @@ export default function SignInSide() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(users);
     const data = new FormData(event.currentTarget);
     if (data.get("email") < 4 && data.get("password") < 4) {
       setIsSubmit(false);

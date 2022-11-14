@@ -37,7 +37,6 @@ const App = () => {
           <Routes>
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/" element={<Navigate to="/landing" />} />
-            {/* <Route path="/" element={<Navigate to="/login" />} /> */}
             <Route path="/login" element={<SignInSide />} />
             <Route path="/kpi" element={<Navigate to="/landing" />} />
           </Routes>
@@ -81,9 +80,7 @@ const App = () => {
                 {themeSettings && <ThemeSettings />}
 
                 <Routes>
-                  {/* <Route path="/" element = { <Navigate replace to="/kpi" />}></Route> */}
                   <Route path="/login" element={<Navigate to="/" />} />
-                  {/* <Route path="/login" element={<SignInSide />} /> */}
                   <Route path="/kpi" element={<KPIList />} />
                   <Route path="/" element={<Footer />} />
                 </Routes>
