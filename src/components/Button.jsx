@@ -11,7 +11,7 @@ const Button = ({
   borderRadius,
   width,
 }) => {
-  const { setIsClicked, initialState } = useStateContext();
+  const { setIsClicked, initialState, handleLoginUser } = useStateContext();
 
   const handleLogout = () => {
     setIsClicked(initialState);
