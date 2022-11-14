@@ -11,13 +11,13 @@ const Button = ({
   borderRadius,
   width,
 }) => {
-  const { setIsClicked, initialState, handleLoginUser } = useStateContext();
+  const { setIsClicked, initialState } = useStateContext();
 
   const handleLogout = () => {
     setIsClicked(initialState);
     if (!icon) {
       window.location.reload(true);
-      handleLoginUser(false);
+      // handleLoginUser(false);
     }
   };
 
