@@ -46,10 +46,7 @@ const EditForm = ({ theEmployee }) => {
     }
 
     axios
-      .post(
-        `https://pms-apis.herokuapp.com/bsc/add/kpi/${theEmployee.kpi_id}/`,
-        datas
-      )
+      .post(`http://10.100.2.63:9000/bsc/add/kpi/${theEmployee.kpi_id}/`, datas)
       .then((response) => {
         if (response.status === 200) {
           let numberOfmonthsLeft = parseInt(theEmployee.numberOfmonthsLeft) - 1;

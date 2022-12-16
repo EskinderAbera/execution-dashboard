@@ -52,7 +52,7 @@ export default function SignInSide() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(users);
+    console.log("users", users);
     const data = new FormData(event.currentTarget);
     if (data.get("email") < 4 && data.get("password") < 4) {
       setIsSubmit(false);
@@ -66,7 +66,7 @@ export default function SignInSide() {
       };
 
       axios
-        .post("https://pms-apis.herokuapp.com/core/auth/new/login/", datas)
+        .post("http://10.100.2.63:9000/core/auth/new/login/", datas)
         .then((response) => {
           if (response.status === 200) {
             setIsSubmit(false);

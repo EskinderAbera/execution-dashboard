@@ -58,7 +58,7 @@ const LandingPage = () => {
       });
 
       axios
-        .get(`https://pms-apis.herokuapp.com/bsc/kpi/${userId[0].id}/`)
+        .get(`http://10.100.2.63:9000/bsc/kpi/${userId[0].id}/`)
         .then((response) => {
           if (response.status === 200) {
             changeKPIS(response.data);
@@ -99,7 +99,7 @@ const LandingPage = () => {
     });
 
     axios
-      .get(`https://pms-apis.herokuapp.com/bsc/kpi/${userId[0].id}/`)
+      .get(`http://10.100.2.63:9000/bsc/kpi/${userId[0].id}/`)
       .then((response) => {
         if (response.status === 200) {
           changeKPIS(response.data);
@@ -172,7 +172,7 @@ const LandingPage = () => {
       }
     });
     axios
-      .get(`https://pms-apis.herokuapp.com/bsc/kpi/${userId[0].id}/`)
+      .get(`http://10.100.2.63:9000/bsc/kpi/${userId[0].id}/`)
       .then((response) => {
         if (response.status === 200) {
           changeKPIS(response.data);
@@ -221,7 +221,7 @@ const LandingPage = () => {
       }
     });
     axios
-      .get(`https://pms-apis.herokuapp.com/bsc/kpi/${userId[0].id}/`)
+      .get(`http://10.100.2.63:9000/bsc/kpi/${userId[0].id}/`)
       .then((response) => {
         if (response.status === 200) {
           changeKPIS(response.data);
@@ -391,7 +391,7 @@ const LandingPage = () => {
       }
     });
     axios
-      .get(`https://pms-apis.herokuapp.com/bsc/kpi/${e.target.value}/`)
+      .get(`http://10.100.2.63:9000/bsc/kpi/${e.target.value}/`)
       .then((response) => {
         if (response.status === 200) {
           changeKPIS(response.data);

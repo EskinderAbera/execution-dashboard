@@ -31,22 +31,18 @@ export const ContextProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const getDepts = await axios.get(
-        `https://pms-apis.herokuapp.com/core/department/`
+        `http://10.100.2.63:9000/core/department/`
       );
-      const getRole = await axios.get(
-        `https://pms-apis.herokuapp.com/core/role/`
-      );
+      const getRole = await axios.get(`http://10.100.2.63:9000/core/role/`);
       const getSubDept = await axios.get(
-        `https://pms-apis.herokuapp.com/core/subdepartment/`
+        `http://10.100.2.63:9000/core/subdepartment/`
       );
       const getSubSubDept = await axios.get(
-        `https://pms-apis.herokuapp.com/core/subsub/`
+        `http://10.100.2.63:9000/core/subsub/`
       );
-      const getUsers = await axios.get(
-        `https://pms-apis.herokuapp.com/core/users/`
-      );
+      const getUsers = await axios.get(`http://10.100.2.63:9000/core/users/`);
       const getKpis = await axios.get(
-        `https://pms-apis.herokuapp.com/bsc/kpi/76ee057b-ad16-4582-8a2d-52f4e69d0abc/`
+        `http://10.100.2.63:9000/bsc/kpi/76ee057b-ad16-4582-8a2d-52f4e69d0abc/`
       );
       setDepts(getDepts.data);
       setRole(getRole.data);
